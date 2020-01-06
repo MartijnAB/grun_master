@@ -64,6 +64,7 @@ def table_df(table):
             print(j)
             print(column)
             input()
+            print()
             matrix[i][j] = column.get_text().strip()
             print(matrix)
     # put in df making first row the header
