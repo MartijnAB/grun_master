@@ -4,6 +4,7 @@ __author__ = "Fenna Feenstra and Martijn AB"
 
 import re
 from abc import ABC, abstractmethod
+import urllib.request, urllib.parse, urllib.error
 
 
 class HyperTextMarkupLanguage(ABC):
@@ -50,12 +51,7 @@ class Html(HyperTextMarkupLanguage):
     #     return ctx
 
     # @
-    # def open_url(url):
-    #     """ opens url"""
-    #     ctx = hack_ssl()
-    #     html = urllib.request.urlopen(url, context=ctx).read()
-    #     # print(html)
-    #     return html
+
 
 class FalseHtml(HyperTextMarkupLanguage):
 
@@ -78,4 +74,11 @@ class InternetConnection:
             print("nee a")
 
         # if type(address) == Html: # chek if html
+
+    def open_url(url):
+        """ opens url"""
+        ctx = hack_ssl()
+        html = urllib.request.urlopen(url, context=ctx).read()
+        # print(html)
+        return html
 
