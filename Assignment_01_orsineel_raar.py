@@ -9,13 +9,14 @@
 # import pandas as pd
 #
 #
-# def hack_ssl():
-#     """ ignores the certificate errors"""
+def hack_ssl():
+# """ ignores the certificate errors"""
 #     ctx = ssl.create_default_context()
 #     ctx.check_hostname = False
 #     ctx.verify_mode = ssl.CERT_NONE
 #     print(ctx)
 #     return ctx
+#
 #
 #
 # def open_url(url):

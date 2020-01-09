@@ -19,6 +19,7 @@ def main():
     run =  InternetConnection('https://en.wikipedia.org/wiki/Tilburg_Trappers')
     print("exampel1 stop")
     print("exampel2 start")
+    run = InternetConnection('onzin')
     print("exampel2 stop")
 
 
