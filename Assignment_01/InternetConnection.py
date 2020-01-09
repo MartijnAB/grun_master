@@ -5,13 +5,20 @@ __author__ = "Fenna Feenstra and Martijn AB"
 import re
 from abc import ABC, abstractmethod
 import urllib.request, urllib.parse, urllib.error
+import ssl
 
 
 class HyperTextMarkupLanguage(ABC):
+    
+ 
+        
 
     @abstractmethod
     def __init__(self, address):
-        print("wouw dtevvvvvvvvvvvvvvvvvvvvvvvvvvvyyyyyyyyyyyyyyyrrrrrrrrrrrf")
+        self.is_true_html = False
+
+    def _valied_html_(self, address):
+        return re.fullmatch('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', address)
 
     @abstractmethod
     def is_valied(self):
@@ -31,26 +38,29 @@ class Html(HyperTextMarkupLanguage):
 
 
         self.is_true_html = False
-        if re.fullmatch('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', address):
+        if self.is_valied(address):
             self.is_true_html = True
         else:
             import warnings
             warnings.warn("is not a valit html")
-            self.__class__ = FalseHtml
+            # self.__class__ = FalseHtml
+            return FalseHtml(address)
+        self.address = address
 
     def is_valied(self):
         pass
 
-    # def hack_ssl():
+    def open(self):
+        ctx = self._hack_ssl_()
+        return urllib.request.urlopen(self.address, context=ctx).read()
 
-    # """ ignores the certificate errors"""
-    #     ctx = ssl.create_default_context()
-    #     ctx.check_hostname = False
-    #     ctx.verify_mode = ssl.CERT_NONE
-    #     print(ctx)
-    #     return ctx
-
-    # @
+    def _hack_ssl_(self):
+        """ ignores the certificate errors"""
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        print(ctx)
+        return ctx
 
 
 class FalseHtml(HyperTextMarkupLanguage):
@@ -77,8 +87,8 @@ class InternetConnection:
 
     def open_url(url):
         """ opens url"""
-        ctx = hack_ssl()
-        html = urllib.request.urlopen(url, context=ctx).read()
+
+
         # print(html)
         return html
 
