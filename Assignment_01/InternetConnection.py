@@ -38,7 +38,7 @@ class Html(HyperTextMarkupLanguage):
 
 
         self.is_true_html = False
-        if self.is_valied(address):
+        if self._valied_html_(address):
             self.is_true_html = True
         else:
             import warnings
