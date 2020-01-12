@@ -13,7 +13,7 @@ class HyperTextMarkupLanguage(ABC):
  
         
 
-    @abstractmethod
+
     def __init__(self, address):
         self.is_true_html = False
 

@@ -1,6 +1,6 @@
-# from Assignment_01.InternetConnection import InternetConnection
-# import InternetConnection
-from Documents.school.Assignment_01.InternetConnection import InternetConnection
+from Assignment_01.InternetConnection import InternetConnection
+# # import InternetConnection
+# from Documents.school.Assignment_01.InternetConnection import InternetConnection
 
 __author__ = "Fenna Feenstra and Martijn AB"
 
